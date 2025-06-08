@@ -1,0 +1,101 @@
+---------  Week 3 Assignment  ---------
+
+
+Question 1: Query all columns (attributes) for every row in the CITY table.
+https://www.hackerrank.com/challenges/select-all-sql/problem
+
+Answer :  SELECT * FROM CITY;
+
+---------------------------------------------------------------------------
+
+Question 2: Query all columns for a city in CITY with the ID 1661.
+https://www.hackerrank.com/challenges/select-by-id/problem
+
+Answer: 
+
+SELECT * FROM CITY
+WHERE ID = 1661;
+
+---------------------------------------------------------------------------
+
+Question 3: Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+https://www.hackerrank.com/challenges/name-of-employees/problem
+
+Answer: 
+
+SELECT NAME FROM Employee
+ORDER BY NAME;
+
+---------------------------------------------------------------------------
+
+Question 4: Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.
+https://www.hackerrank.com/challenges/japanese-cities-attributes/problem
+
+Answer:
+
+SELECT * FROM CITY
+WHERE COUNTRYCODE LIKE "JPN"
+
+---------------------------------------------------------------------------
+
+Question 5: Query a list of CITY and STATE from the STATION table.
+https://www.hackerrank.com/challenges/weather-observation-station-1/problem
+
+Answer:
+
+SELECT CITY, STATE FROM STATION
+
+---------------------------------------------------------------------------
+
+Question 6: Query a list of CITY names from STATION for cities that have an even ID number. Print the results in any order, but exclude duplicates from the answer.
+https://www.hackerrank.com/challenges/weather-observation-station-3/problem
+
+Answer:
+
+SELECT DISTINCT CITY FROM STATION
+WHERE ID%2 = 0
+
+---------------------------------------------------------------------------
+
+Question 7: Find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
+https://www.hackerrank.com/challenges/weather-observation-station-4/problem
+
+Answer:
+
+SELECT COUNT(CITY) - COUNT(DISTINCT(CITY)) FROM STATION
+
+---------------------------------------------------------------------------
+
+Question 8: Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+https://www.hackerrank.com/challenges/weather-observation-station-5/problem
+
+Answer:
+
+(SELECT CITY, LENGTH(CITY) FROM STATION
+ORDER BY LENGTH(CITY), CITY LIMIT 1)
+UNION
+(SELECT CITY, LENGTH(CITY) FROM STATION
+ORDER BY LENGTH(CITY) DESC, CITY LIMIT 1)
+
+---------------------------------------------------------------------------
+
+Question 9: Query the average population for all cities in CITY, rounded down to the nearest integer.
+https://www.hackerrank.com/challenges/average-population/problem
+
+Answer:
+
+SELECT FLOOR(AVG(POPULATION)) FROM CITY
+
+---------------------------------------------------------------------------
+
+Question 10: Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+https://www.hackerrank.com/challenges/average-population-of-each-continent/problem
+
+Answer:
+
+SELECT COUNTRY.CONTINENT, FLOOR(AVG(CITY.POPULATION)) FROM CITY
+JOIN COUNTRY
+ON CITY.COUNTRYCODE = COUNTRY.CODE
+GROUP BY COUNTRY.CONTINENT
+
+---------------------------------------------------------------------------
